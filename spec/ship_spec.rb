@@ -20,7 +20,14 @@ describe Ship do
   it "starts with health equal to it's length" do
     cruiser = Ship.new("Cruiser", 3)
     expect(cruiser.health). to eql(3)
-end
+  end
+
+  it "is not sunk by default" do
+    cruiser = Ship.new("Cruiser", 3)
+    expect(cruiser.sunk?).to eql(false)
+  end
+
+
 
 end
 
