@@ -17,7 +17,7 @@ describe Ship do
     expect(cruiser.length). to eql(3)
   end
 
-  it "starts with health equal to it's length" do
+  it "starts with health equal to the length" do
     cruiser = Ship.new("Cruiser", 3)
     expect(cruiser.health). to eql(3)
   end
@@ -54,9 +54,8 @@ describe Ship do
   cruiser.hit
   cruiser.hit
   expect(cruiser.sunk?). to eql(true)
-end 
-
-
+  end 
+  
 end
 
 
