@@ -27,12 +27,19 @@ describe Ship do
     expect(cruiser.sunk?).to eql(false)
   end
 
-  it "can lose health after being hit" do
+  it "will lose health when it's hit" do
     cruiser = Ship.new("Cruiser", 3)
     cruiser.hit
     expect(cruiser.health). to eql(2) 
   end
 
+  it "will lose health every time it's hit" do
+    cruiser = Ship.new("Cruiser", 3)
+    cruiser.hit
+    cruiser.hit
+    cruiser.hit
+    expect(cruiser.health). to eql(0) 
+  end
 
 
 end
