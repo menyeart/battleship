@@ -16,6 +16,6 @@ describe Cell do
     end
 
     it 'contains a ship' do
-        cell = Cell.new("B4")
+        cell = Cell.new("B4")cell = Cell.new("B4")
     end
 end
