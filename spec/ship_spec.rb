@@ -41,6 +41,21 @@ describe Ship do
     expect(cruiser.health). to eql(0) 
   end
 
+  it "will not sink until it has lost all its health" do
+    cruiser = Ship.new("Cruiser", 3)
+    cruiser.hit
+    cruiser.hit
+    expect(cruiser.sunk?). to eql(false)
+  end 
+
+  it "will sink when health reaches 0" do
+  cruiser = Ship.new("Cruiser", 3)
+  cruiser.hit
+  cruiser.hit
+  cruiser.hit
+  expect(cruiser.sunk?). to eql(true)
+end 
+
 
 end
 
