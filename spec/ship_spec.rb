@@ -12,6 +12,10 @@ describe Ship do
      expect(cruiser.name).to eql("Cruiser")
   end
 
+  it "has a length" do
+    cruiser = Ship.new("Cruiser", 3)
+    expect(cruiser.length). to eql(3)
+  end
 
 end
 
