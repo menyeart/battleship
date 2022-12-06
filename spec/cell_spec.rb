@@ -15,7 +15,9 @@ describe Cell do
         expect(cell.coordinate).to eq("B4")
     end
 
-    it 'contains a ship' do
-        cell = Cell.new("B4")cell = Cell.new("B4")
+    it 'doesnt contain a ship by default' do
+        cell = Cell.new("B4")
+
+        expect(cell.ship).to eq(nil)
     end
 end
