@@ -42,11 +42,12 @@ describe Cell do
         expect(cell.fired_upon?). to eql(false)
     end
 
-    it 'can tell if it has been fired upon'
+    it 'can tell if it has been fired upon' do
         cell = Cell.new("B4")
         cruiser = Ship.new("Cruiser", 3)
         cell.place_ship(cruiser)
         cell.fire_upon
         expect(cell.fired_upon?). to eql(true)
+    end
 
 end
