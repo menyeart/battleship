@@ -35,6 +35,8 @@ class Cell
             "."
         elsif @fired_upon == true && @ship == nil
             "M"
+        elsif @fired_upon == true && @ship == ship
+            "H"
         end
     end
 end
