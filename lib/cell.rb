@@ -33,6 +33,8 @@ class Cell
     def render
         if @fired_upon == false
             "."
+        elsif @fired_upon == true && @ship == nil
+            "M"
         end
     end
 end
