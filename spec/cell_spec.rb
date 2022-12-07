@@ -50,4 +50,15 @@ describe Cell do
         expect(cell.fired_upon?). to eql(true)
     end
 
+    it 'can transmit damage to a ship when fired upon' do
+        cell = Cell.new("B4")
+        cruiser = Ship.new("Cruiser", 3)
+        cell.place_ship(cruiser)
+        cell.fire_upon
+        expect(cell.fired_upon?). to eql(true)
+        expect(cell.ship.health). to eql(2)
+    end
+
+
+
 end
