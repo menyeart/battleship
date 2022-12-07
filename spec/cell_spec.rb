@@ -34,4 +34,12 @@ describe Cell do
 
         expect(cell.ship.name).to eq("Cruiser")
     end
+
+    it 'has not be fired upon be default' do
+        cell = Cell.new("B4")
+        cruiser = Ship.new("Cruiser", 3)
+        cell.place_ship(cruiser)
+        expect(cell.fired_upon?). to eql(false)
+    end
+
 end
