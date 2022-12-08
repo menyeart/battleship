@@ -19,4 +19,9 @@ describe Board do
     expect(board.cells.keys.length).to eq(16)
   end
 
+  it "has keys that point to cell objects" do
+    board = Board.new
+    expect(board.cells.values.first).to be_an_instance_of(Cell)
+  end
+
 end
