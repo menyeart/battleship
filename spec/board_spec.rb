@@ -13,4 +13,10 @@ describe Board do
     board = Board.new
     expect(board.cells.class).to eq(Hash)
   end  
+
+  it "contains 16 cells" do
+    board = Board.new
+    expect(board.cells.keys.length).to eq(16)
+  end
+
 end
