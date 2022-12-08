@@ -24,4 +24,17 @@ describe Board do
     expect(board.cells.values.first).to be_an_instance_of(Cell)
   end
 
+  it "can validate cell keys on the board" do
+    board = Board.new
+    expect(board.valid_coordinate?("A1")).to eq(true)
+    expect(board.valid_coordinate?("E1")).to eq(false)
+  end
+
+
+
+
+
+
+
+
 end
