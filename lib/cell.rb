@@ -30,8 +30,10 @@ class Cell
         end
     end
 
-    def render
-        if @fired_upon == false
+    def render(home = nil)
+        if home == true
+            @ship == nil ? '.' : 'S'
+        elsif @fired_upon == false
             "."
         elsif @fired_upon == true && @ship == nil
             "M"
