@@ -80,4 +80,23 @@ describe Cell do
 
         expect(cell_1.render).to eq("H")
     end
+
+    it 'Cell renders to X when a cell is fired upon and ship is sunk' do
+        cell_2 = Cell.new("C3")
+        cruiser = Ship.new("Cruiser", 3)
+        cell_2.place_ship(cruiser)
+        cruiser.hit
+        cruiser.hit
+        cell_2.fire_upon
+
+        expect(cell_2.render).to eq("X")
+    end
+
+    it 'Cell renders S when a cell is not fired upon and contains ship' do
+        cell_2 = Cell.new("C3")
+        cruiser = Ship.new("Cruiser", 3)
+        cell_2.place_ship(cruiser)
+
+        expect(cell_2.render(true)).to eq("S")
+    end
 end
