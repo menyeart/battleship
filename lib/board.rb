@@ -30,6 +30,15 @@ class Board
     cells.keys.include?(coord)
   end
 
+  def valid_placement?(ship, coordinates)
+    if ship.length == coordinates.length
+      true
+    else
+      false
+    end
+  end
+
+
 
 
 
