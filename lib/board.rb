@@ -44,23 +44,21 @@ class Board
     end
   end
 
-
-  
   def place(boat, coordinates)
-   cells.each do |key, value|
-    if coordinates.any? do |coordinate|
-      if coordinate == key
-        value.place_ship(boat)
+    cells.each do |key, value|
+      if coordinates.any? do |coordinate|
+        if coordinate == key
+          value.place_ship(boat)
+        end
+        end
       end
     end
-    
   end
 
 
-  end
+
+
   
-    
-  end
 end  
 
 
