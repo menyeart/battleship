@@ -42,7 +42,11 @@ class Board
     else
       false
     end
-end
+  end
+
+  def place
+    
+  end
 end  
 
 
