@@ -32,18 +32,25 @@ class Board
 
   def valid_placement?(ship, coordinates)
     if ship.length == coordinates.length
-      true
+      if coordinates.each_cons(2).to_a.all? {|a, b|  b[1].to_i == a[1].to_i + 1 } && coordinates.each_cons(2).to_a.all? {|a, b| a[0] == b[0]}
+        return true
+      elsif coordinates.each_cons(2).to_a.all? {|a, b|  a[0].ord + 1 == b[0].ord } && coordinates.each_cons(2).to_a.all? {|a, b| a[1] == b[1]}
+        return true
+      else
+        false
+      end
     else
       false
     end
-  end
+end
+end  
 
 
 
 
 
 
-end 
+ 
 
 
 
