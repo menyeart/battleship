@@ -70,8 +70,7 @@ describe Board do
     cell_1 = board.cells["A1"]
     cell_2 = board.cells["A2"]
     cell_3 = board.cells["A3"]
-    expect(cell_1.ship).to 
-    be_an_instance_of(Ship)
+    expect(cell_1.ship).to be_an_instance_of(Ship)
     expect(cell_2.ship).to be_an_instance_of(Ship)
     expect(cell_3.ship).to be_an_instance_of(Ship)
     expect(cell_3.ship).to eq(cell_2.ship)
