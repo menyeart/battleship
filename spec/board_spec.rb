@@ -87,6 +87,7 @@ describe Board do
     board.place(cruiser, ["A1", "A2", "A3"])
     submarine = Ship.new("Submarine", 2) 
     expect(board.valid_placement?(submarine, ["A1", "B1"])).to eq(false)
+    expect(board.valid_placement?(submarine, ["B2", "B3"])).to eq(true)
   end
   
 end
