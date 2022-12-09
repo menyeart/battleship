@@ -6,7 +6,7 @@ class Board
   end
 
   def cells
-    cells = { 
+    @cells ||= { 
       "A1" => Cell.new("A1"),
       "A2" => Cell.new("A2"),
       "A3" => Cell.new("A3"),
@@ -44,7 +44,21 @@ class Board
     end
   end
 
-  def place
+
+  
+  def place(boat, coordinates)
+   cells.each do |key, value|
+    if coordinates.any? do |coordinate|
+      if coordinate == key
+        value.place_ship(boat)
+      end
+    end
+    
+  end
+
+
+  end
+  
     
   end
 end  
