@@ -69,14 +69,14 @@ class Board
       board_array << value.render(bool)
     end
 
-    spaced_string = board_array.join('').gsub(/(.{1})/, '\1 ')  
+    spaced_string = board_array.join(' ') 
 
     string1 = spaced_string.slice!(0, 8)
     string2 = spaced_string.slice!(0, 8)
     string3 = spaced_string.slice!(0, 8)
     string4 = spaced_string.slice!(0, 8)
 
-    return "  1 2 3 4 \n" + "A #{string1}\n" + "B #{string2}\n" + "C #{string3}\n" + "D #{string4}\n"
+    return "  1 2 3 4 \n" + "A #{string1}\n" + "B #{string2}\n" + "C #{string3}\n" + "D #{string4} \n"
  
   end  
 
