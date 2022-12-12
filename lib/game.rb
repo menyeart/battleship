@@ -2,7 +2,8 @@ class Game
 
     def initialize
         @placement = Placement.new
-        @board = Board.new
+        @computer_board = Board.new
+        @player_board = Board.new
         @comp_cruiser = Ship.new("Cruiser", 3)
         @comp_sub = Ship.new("Submarine", 2)
         @player_cruiser = Ship.new("Cruiser", 3)
@@ -35,24 +36,15 @@ class Game
         end
     end
 
-    def comp_placement
-        #create a ship
-        # @comp_cruiser
-        # @comp_sub
-        #create valid coordinates for ship placement
-        #place ship on coordinates
-    end
-
     def comp_coord_selection(boat)
         if boat.name == "Submarine"
            comp_coords = @placement.sub_placements.sample(1).flatten
-           @board.valid_placement?(boat, comp_coords) == true ? @board.place(boat, comp_coords) : comp_coord_selection(boat)
+           @computer_board.valid_placement?(boat, comp_coords) == true ? @computer_board.place(boat, comp_coords) : comp_coord_selection(boat)
         else
-           comp_coords = @placement.cruiser_placements.sample(1).flatten
-           p @board.valid_placement?(boat, comp_coords) == true ? @board.place(boat, comp_coords) : comp_coord_selection(boat)
+            comp_coords = @placement.cruiser_placements.sample(1).flatten
+            @computer_board.valid_placement?(boat, comp_coords) == true ? @computer_board.place(boat, comp_coords) : comp_coord_selection(boat)
         end
-        puts @board.render(true)
-        puts "I have laid out my ships on the grid."
+          
     end
 
 end
