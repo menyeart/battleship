@@ -54,6 +54,7 @@ class Game
         puts @player_board.render
         player_cruiser_placement
         player_sub_placement
+        turn
     end
 
     def player_cruiser_placement
@@ -91,6 +92,27 @@ class Game
         else
             puts "Those are invalid coordinates. Please try again:"
             player_sub_placement
+        end
+    end
+
+    def turn
+        puts "=============COMPUTER BOARD============="
+        puts @computer_board.render
+        puts "==============PLAYER BOARD=============="
+        puts @player_board.render(true)
+        puts "Enter the coordinate for your shot:"
+        player_shot = gets.chomp.upcase
+        if @computer_board.valid_coordinate?(player_shot) == true
+            require 'pry'; binding.pry
+            if @computer_board.cells[(player_shot)].fired_upon? == true
+                put "This cell has been fired upon previously"
+                turn
+            else
+               # Computer shot
+            end
+
+        else
+            puts "Please enter a valid coordinate:"
         end
     end
 end
