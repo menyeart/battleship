@@ -28,6 +28,7 @@ class Game
             comp_ships.each do |boat|
                 comp_coord_selection(boat)
             end
+            player_ship_placement
         elsif user_choice == "q"
             exit
         else
@@ -44,9 +45,54 @@ class Game
             comp_coords = @placement.cruiser_placements.sample(1).flatten
             @computer_board.valid_placement?(boat, comp_coords) == true ? @computer_board.place(boat, comp_coords) : comp_coord_selection(boat)
         end
-          
     end
 
+    def player_ship_placement
+        puts "I have laid out my ships on the grid."
+        puts "You now need to lay out your two ships."
+        puts "The Cruiser is three units long and the Submarine is two units long."
+        puts @player_board.render
+        player_cruiser_placement
+        player_sub_placement
+    end
+
+    def player_cruiser_placement
+        puts "Enter the squares for the Cruiser (3 spaces):"
+        player_input_cruiser = gets.chomp.upcase.split
+        if player_input_cruiser.all? do |player_coord|
+            @player_board.valid_coordinate?(player_coord) == true
+        end
+                if @player_board.valid_placement?(@player_cruiser, player_input_cruiser) == true
+                    @player_board.place(@player_cruiser, player_input_cruiser)
+                    puts @player_board.render(true)
+                else
+                    puts "Those are invalid coordinates. Please try again:"
+                    player_cruiser_placement
+                end
+        else
+            puts "Those are invalid coordinates. Please try again:"
+            player_cruiser_placement
+        end
+    end
+
+    def player_sub_placement
+        puts "Enter the squares for the Submarine (2 spaces):"
+        player_input_sub = gets.chomp.upcase.split
+        if player_input_sub.all? do |player_coord|
+            @player_board.valid_coordinate?(player_coord) == true
+        end
+            if @player_board.valid_placement?(@player_sub, player_input_sub) == true
+                @player_board.place(@player_sub, player_input_sub)
+                puts @player_board.render(true)
+            else
+                puts "Those are invalid coordinates. Please try again:"
+                player_sub_placement
+            end
+        else
+            puts "Those are invalid coordinates. Please try again:"
+            player_sub_placement
+        end
+    end
 end
 
 
