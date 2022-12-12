@@ -11,8 +11,15 @@ class Game
     end
 
     def start
-        puts "Welcome to Battleship"
-        puts "Enter p to play. Enter q to quit"
+        puts "
+                     __/___     |>       
+                    /_____/_____|_           
+            _______/_____/_______|_____    
+            \\   USS  < < <  TURING   || 
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+        "
+        puts "       -*-*-*- Welcome to Battleship -*-*-*-       "
+        puts "\nEnter p to play. Enter q to quit"
 
         user_choice = gets.chomp.downcase
         if user_choice == "p"
@@ -38,11 +45,17 @@ class Game
 
     def comp_coord_selection(boat)
         if boat.name == "Submarine"
-            @placement.sub_placements.sample(1).flatten
+           comp_coords = @placement.sub_placements.sample(1).flatten
+           @board.valid_placement?(boat, comp_coords) == true ? @board.place(boat, comp_coords) : comp_coord_selection(boat)
         else
-            @placement.cruiser_placements.sample(1).flatten
+           comp_coords = @placement.cruiser_placements.sample(1).flatten
+           p @board.valid_placement?(boat, comp_coords) == true ? @board.place(boat, comp_coords) : comp_coord_selection(boat)
         end
-
+        puts @board.render(true)
+        puts "I have laid out my ships on the grid."
     end
 
 end
+
+
+
