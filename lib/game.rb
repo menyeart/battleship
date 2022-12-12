@@ -53,6 +53,7 @@ class Game
         puts "The Cruiser is three units long and the Submarine is two units long."
         puts @player_board.render
         player_cruiser_placement
+        player_sub_placement
     end
 
     def player_cruiser_placement
@@ -64,7 +65,6 @@ class Game
                 if @player_board.valid_placement?(@player_cruiser, player_input_cruiser) == true
                     @player_board.place(@player_cruiser, player_input_cruiser)
                     puts @player_board.render(true)
-                    player_sub_placement
                 else
                     puts "Those are invalid coordinates. Please try again:"
                     player_cruiser_placement
