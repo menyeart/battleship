@@ -56,13 +56,14 @@ class Game
     end
 
     def player_cruiser_placement
-        puts "Enter the squares for the Cruiser (3 spaces):"
+        puts "\nEnter the squares for the Cruiser (3 spaces, ex. <A1 A2 A3> ):"
         player_input_cruiser = gets.chomp.upcase.split
         if player_input_cruiser.all? do |player_coord|
             @player_board.valid_coordinate?(player_coord) == true
         end
                 if @player_board.valid_placement?(@player_cruiser, player_input_cruiser) == true
                     @player_board.place(@player_cruiser, player_input_cruiser)
+                    puts "Your Cruiser has been placed on the board:\n\n"
                     puts @player_board.render(true)
                 else
                     puts "Those are invalid coordinates. Please try again:"
@@ -75,13 +76,14 @@ class Game
     end
 
     def player_sub_placement
-        puts "Enter the squares for the Submarine (2 spaces):"
+        puts "Enter the squares for the Submarine (2 spaces, ex. <B1 B2>):"
         player_input_sub = gets.chomp.upcase.split
         if player_input_sub.all? do |player_coord|
             @player_board.valid_coordinate?(player_coord) == true
         end
             if @player_board.valid_placement?(@player_sub, player_input_sub) == true
                 @player_board.place(@player_sub, player_input_sub)
+                puts "Your Submarine has been placed on the board:\n\n"
                 puts @player_board.render(true)
             else
                 puts "Those are invalid coordinates. Please try again:"
@@ -94,11 +96,12 @@ class Game
     end
 
     def turn
-        puts "=============COMPUTER BOARD============="
+        puts "\n-------- Prepare for combat! --------\n\n"
+        puts "============= COMPUTER BOARD =============\n\n"
         puts @computer_board.render
-        puts "==============PLAYER BOARD=============="
+        puts "\n============== PLAYER BOARD ==============\n\n"
         puts @player_board.render(true)
-        puts "Enter the coordinate for your shot:"
+        puts "\nEnter the coordinate for your shot:"
         player_turn
     end
         
