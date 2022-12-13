@@ -101,19 +101,33 @@ class Game
         puts "==============PLAYER BOARD=============="
         puts @player_board.render(true)
         puts "Enter the coordinate for your shot:"
+        player_turn
+    end
+        
+    def player_turn
         player_shot = gets.chomp.upcase
         if @computer_board.valid_coordinate?(player_shot) == true
-            require 'pry'; binding.pry
+            # require 'pry'; binding.pry
             if @computer_board.cells[(player_shot)].fired_upon? == true
                 put "This cell has been fired upon previously"
-                turn
+                player_turn
             else
-               # Computer shot
+               comp_shot
             end
 
         else
             puts "Please enter a valid coordinate:"
+            player_turn
         end
+    end
+
+    def comp_shot
+        computer_shots = @player_board.cells.keys
+        computer_shot = computer_shots.sample(1)[0]
+        @player_board.cells[computer_shot].fire_upon
+        computer_shots.delete_if {|shot_choice| shot_choice == computer_shot}
+
+        require 'pry'; binding.pry
     end
 end
 
