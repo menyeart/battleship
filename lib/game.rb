@@ -48,9 +48,7 @@ class Game
     end
 
     def player_ship_placement
-        puts "I have laid out my ships on the grid."
-        puts "You now need to lay out your two ships."
-        puts "The Cruiser is three units long and the Submarine is two units long."
+        puts "I have laid out my ships on the grid.\nYou now need to lay out your two ships.\nThe Cruiser is three units long and the Submarine is two units long.\n\n"
         puts @player_board.render
         player_cruiser_placement
         player_sub_placement
@@ -132,7 +130,7 @@ class Game
     def result_report(board, shot_key)
         if board.cells[shot_key].empty? == true
             puts "The shot on #{shot_key} was a miss"
-        elsif
+        else
             
         end
 
