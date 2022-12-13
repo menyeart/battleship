@@ -103,15 +103,18 @@ class Game
         puts @player_board.render(true)
         puts "\nEnter the coordinate for your shot:"
         player_turn
+        comp_shot
     end
         
+
     def player_turn
         player_shot = gets.chomp.upcase
             if @computer_board.cells[(player_shot)].fired_upon? == true
                 put "\nThis cell has been fired upon previously, please enter a new coordiate"
                 player_turn
             elsif @computer_board.valid_coordinate?(player_shot) == true
-                p @computer_board.cells[player_shot].fire_upon
+                result_report(@computer_board, player_shot, "player")
+                @computer_board.cells[player_shot].fire_upon
             else
                 puts "\nPlease enter a valid coordinate:"
                 player_turn
@@ -124,19 +127,30 @@ class Game
     def comp_shot
         computer_shots = @player_board.cells.keys
         computer_shot = computer_shots.sample(1)[0]
+        puts result_report(@player_board, computer_shot, "computer")
         @player_board.cells[computer_shot].fire_upon
         computer_shots.delete_if {|shot_choice| shot_choice == computer_shot}
-
     end
 
-    def result_report(board, shot_key)
+    def result_report(board, shot_key, player)
         if board.cells[shot_key].empty? == true
-            puts "The shot on #{shot_key} was a miss"
+            puts "\nThe #{player}'s shot on #{shot_key} was a miss!"
         else
-            
+            puts "\nThe #{player}'s shot on #{shot_key} was a hit!"
         end
-
     end
+
+
+    def end_game
+        if @comp_cruiser.is_sunk? == true && @comp_sub.is_sunk == true
+            "Congratulations, you've won"
+        elsif @player_cruiser.is_sunk? == true && @player_sub.is_sunk == true
+            "You've lost the battle, prepare to enter Davy Jones' locker!"
+        else
+            turn
+        end
+    end
+
 end
 
 
