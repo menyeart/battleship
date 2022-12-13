@@ -121,6 +121,9 @@ class Game
             elsif @computer_board.valid_coordinate?(player_shot) == true
                 result_report(@computer_board, player_shot, "player")
                 @computer_board.cells[player_shot].fire_upon
+                if @computer_board.cells[(player_shot)].ship == true
+                    @computer_board.cells[(player_shot)].ship.hit
+                end
             else
                 puts "\nPlease enter a valid coordinate:"
                 player_turn
@@ -135,6 +138,10 @@ class Game
         computer_shot = computer_shots.sample(1)[0]
         puts result_report(@player_board, computer_shot, "computer")
         @player_board.cells[computer_shot].fire_upon
+        # require 'pry'; binding.pry
+            if @player_board.cells[(computer_shot)].ship == true
+                @player_board.cells[(computer_shot)].ship.hit
+            end
         computer_shots.delete_if {|shot_choice| shot_choice == computer_shot}
     end
 
@@ -149,9 +156,11 @@ class Game
 
     def end_game
         if @comp_cruiser.sunk? == true && @comp_sub.sunk? == true
-            "Congratulations, you've won"
+            puts "Congratulations, you've won"
+            start
         elsif @player_cruiser.sunk? == true && @player_sub.sunk? == true
-            "You've lost the battle, prepare to enter Davy Jones' locker!"
+            puts "You've lost the battle, prepare to enter Davy Jones' locker!"
+            start
         end
     end
 
