@@ -127,7 +127,15 @@ class Game
         @player_board.cells[computer_shot].fire_upon
         computer_shots.delete_if {|shot_choice| shot_choice == computer_shot}
 
-        require 'pry'; binding.pry
+    end
+
+    def result_report(board, shot_key)
+        if board.cells[shot_key].empty? == true
+            puts "The shot on #{shot_key} was a miss"
+        elsif
+            
+        end
+
     end
 end
 
