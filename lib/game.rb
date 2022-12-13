@@ -96,21 +96,27 @@ class Game
     end
 
     def turn
-        puts "\n-------- Prepare for combat! --------\n\n"
+        render_current_boards
+        player_turn
+        end_game
+        comp_shot
+        end_game
+        turn
+    end
+
+    def render_current_boards
         puts "============= COMPUTER BOARD =============\n\n"
         puts @computer_board.render
         puts "\n============== PLAYER BOARD ==============\n\n"
-        puts @player_board.render(true)
-        puts "\nEnter the coordinate for your shot:"
-        player_turn
-        comp_shot
+        puts @player_board.render(true)     
     end
         
 
     def player_turn
+        puts "\nEnter the coordinate for your shot:"
         player_shot = gets.chomp.upcase
             if @computer_board.cells[(player_shot)].fired_upon? == true
-                put "\nThis cell has been fired upon previously, please enter a new coordiate"
+                puts "\nThis cell has been fired upon previously, please enter a new coordiate"
                 player_turn
             elsif @computer_board.valid_coordinate?(player_shot) == true
                 result_report(@computer_board, player_shot, "player")
@@ -121,7 +127,7 @@ class Game
             end
     end
 
-
+ ###need to use the ship.hit method for the player turn and computer turns(if cell has a ship, ship.hit)
 
 
     def comp_shot
@@ -142,12 +148,10 @@ class Game
 
 
     def end_game
-        if @comp_cruiser.is_sunk? == true && @comp_sub.is_sunk == true
+        if @comp_cruiser.sunk? == true && @comp_sub.sunk? == true
             "Congratulations, you've won"
-        elsif @player_cruiser.is_sunk? == true && @player_sub.is_sunk == true
+        elsif @player_cruiser.sunk? == true && @player_sub.sunk? == true
             "You've lost the battle, prepare to enter Davy Jones' locker!"
-        else
-            turn
         end
     end
 
