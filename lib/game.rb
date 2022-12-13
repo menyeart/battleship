@@ -8,6 +8,7 @@ class Game
     @comp_sub = Ship.new("Submarine", 2)
     @player_cruiser = Ship.new("Cruiser", 3)
     @player_sub = Ship.new("Submarine", 2)
+    @computer_shots = @player_board.cells.keys
   end
 
   def start
@@ -128,13 +129,12 @@ class Game
   end
 
   def comp_shot
-    computer_shots = @player_board.cells.keys
-    computer_shot = computer_shots.sample(1)[0]
+    computer_shot = @computer_shots.sample(1)[0]
     @player_board.cells[computer_shot].fire_upon
     if @player_board.cells[(computer_shot)].ship == true
       @player_board.cells[(computer_shot)].ship.hit
     end
-    computer_shots.delete_if {|shot_choice| shot_choice == computer_shot}
+    @computer_shots.delete_if {|shot_choice| shot_choice == computer_shot}
     puts result_report(@player_board, computer_shot, "computer")
   end
 
@@ -153,23 +153,13 @@ class Game
   def end_game
     if @comp_cruiser.sunk? == true && @comp_sub.sunk? == true
       puts "Congratulations, you've won"
-      restart
+      initialize
       start
     elsif @player_cruiser.sunk? == true && @player_sub.sunk? == true
       puts "You've lost the battle, prepare to enter Davy Jones' locker!"
-      restart
+      initialize
       start
     end
-  end
-
-  def restart
-    @placement = Placement.new
-    @computer_board = Board.new
-    @player_board = Board.new
-    @comp_cruiser = Ship.new("Cruiser", 3)
-    @comp_sub = Ship.new("Submarine", 2)
-    @player_cruiser = Ship.new("Cruiser", 3)
-    @player_sub = Ship.new("Submarine", 2)
   end
 end
 
