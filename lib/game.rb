@@ -112,24 +112,40 @@ class Game
     end
         
 
+    # def player_turn
+    #     puts "\nEnter the coordinate for your shot:"
+    #     player_shot = gets.chomp.upcase
+    #         if @computer_board.cells[(player_shot)].fired_upon? == true
+    #             puts "\nThis cell has been fired upon previously, please enter a new coordiate"
+    #             player_turn
+    #         elsif @computer_board.valid_coordinate?(player_shot) == true
+    #             result_report(@computer_board, player_shot, "player")
+    #             @computer_board.cells[player_shot].fire_upon
+    #             if @computer_board.cells[(player_shot)].ship == true
+    #                 @computer_board.cells[(player_shot)].ship.hit
+    #             end
+    #         else
+    #             puts "\nPlease enter a valid coordinate:"
+    #             player_turn
+    #         end
+    # end
+
     def player_turn
         puts "\nEnter the coordinate for your shot:"
         player_shot = gets.chomp.upcase
-            if @computer_board.cells[(player_shot)].fired_upon? == true
-                puts "\nThis cell has been fired upon previously, please enter a new coordiate"
-                player_turn
-            elsif @computer_board.valid_coordinate?(player_shot) == true
-                result_report(@computer_board, player_shot, "player")
-                @computer_board.cells[player_shot].fire_upon
-                if @computer_board.cells[(player_shot)].ship == true
-                    @computer_board.cells[(player_shot)].ship.hit
+            if @computer_board.valid_coordinate?(player_shot) == true
+                if @computer_board.cells[(player_shot)].fired_upon? == false
+                    result_report(@computer_board, player_shot, "player")
+                    @computer_board.cells[player_shot].fire_upon    
+                else
+                    puts "\nThis cell has been fired upon previously, please enter a new coordiate"
+                    player_turn
                 end
             else
                 puts "\nPlease enter a valid coordinate:"
-                player_turn
-            end
+                player_turn  
+            end    
     end
-
  ###need to use the ship.hit method for the player turn and computer turns(if cell has a ship, ship.hit)
 
 
