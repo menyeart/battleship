@@ -107,20 +107,19 @@ class Game
         
     def player_turn
         player_shot = gets.chomp.upcase
-        if @computer_board.valid_coordinate?(player_shot) == true
-            # require 'pry'; binding.pry
             if @computer_board.cells[(player_shot)].fired_upon? == true
-                put "This cell has been fired upon previously"
+                put "\nThis cell has been fired upon previously, please enter a new coordiate"
                 player_turn
+            elsif @computer_board.valid_coordinate?(player_shot) == true
+                p @computer_board.cells[player_shot].fire_upon
             else
-               comp_shot
+                puts "\nPlease enter a valid coordinate:"
+                player_turn
             end
-
-        else
-            puts "Please enter a valid coordinate:"
-            player_turn
-        end
     end
+
+
+
 
     def comp_shot
         computer_shots = @player_board.cells.keys
