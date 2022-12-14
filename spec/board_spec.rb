@@ -76,11 +76,6 @@ describe Board do
     expect(cell_3.ship).to eq(cell_2.ship)
   end
 
-
-# board.cells_hash["A1"]
-# expect(board.cells_hash["A1"]). to eq
-
-
   it "will not allow ships to overlap" do
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)

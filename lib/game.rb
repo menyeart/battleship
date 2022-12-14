@@ -19,7 +19,7 @@ class Game
         \\   USS  < < <  TURING   || 
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
     "
-    puts "       -*-*-*- Welcome to Battleship -*-*-*-       "
+    puts "   -*-*-*- Welcome to Battleship -*-*-*-    "
     puts "\nEnter p to play. Enter q to quit"
 
     user_choice = gets.chomp.downcase
@@ -148,7 +148,6 @@ class Game
         end
     end
   end
-
 
   def end_game
     if @comp_cruiser.sunk? == true && @comp_sub.sunk? == true
