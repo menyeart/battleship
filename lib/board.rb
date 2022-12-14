@@ -31,13 +31,11 @@ class Board
   end
 
   def valid_placement?(ship, coordinates)
-   
     ship_array = cells.map do |key, value|
       if value.ship != nil
         key
       end
     end
-
     if ship.length == coordinates.length && ship_array.intersection(coordinates).length == 0
       if coordinates.each_cons(2).to_a.all? {|a, b|  b[1].to_i == a[1].to_i + 1 } && coordinates.each_cons(2).to_a.all? {|a, b| a[0] == b[0]}
         return true
@@ -64,23 +62,16 @@ class Board
 
   def render(bool = nil)
     board_array = []
-
     cells.each do |key, value|
       board_array << value.render(bool)
     end
-
     spaced_string = board_array.join(' ') 
-
     string1 = spaced_string.slice!(0, 8)
     string2 = spaced_string.slice!(0, 8)
     string3 = spaced_string.slice!(0, 8)
     string4 = spaced_string.slice!(0, 8)
-
     return "  1 2 3 4 \n" + "A #{string1}\n" + "B #{string2}\n" + "C #{string3}\n" + "D #{string4} \n"
- 
   end  
-
-
 end  
 
 

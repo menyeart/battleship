@@ -14,12 +14,12 @@ describe Ship do
 
   it "has a length" do
     cruiser = Ship.new("Cruiser", 3)
-    expect(cruiser.length). to eql(3)
+    expect(cruiser.length).to eql(3)
   end
 
   it "starts with health equal to the length" do
     cruiser = Ship.new("Cruiser", 3)
-    expect(cruiser.health). to eql(3)
+    expect(cruiser.health).to eql(3)
   end
 
   it "is not sunk by default" do
@@ -30,7 +30,7 @@ describe Ship do
   it "will lose health when it's hit" do
     cruiser = Ship.new("Cruiser", 3)
     cruiser.hit
-    expect(cruiser.health). to eql(2) 
+    expect(cruiser.health).to eql(2) 
   end
 
   it "will lose health every time it's hit" do
@@ -38,24 +38,23 @@ describe Ship do
     cruiser.hit
     cruiser.hit
     cruiser.hit
-    expect(cruiser.health). to eql(0) 
+    expect(cruiser.health).to eql(0) 
   end
 
   it "will not sink until it has lost all its health" do
     cruiser = Ship.new("Cruiser", 3)
     cruiser.hit
     cruiser.hit
-    expect(cruiser.sunk?). to eql(false)
+    expect(cruiser.sunk?).to eql(false)
   end 
 
   it "will sink when health reaches 0" do
-  cruiser = Ship.new("Cruiser", 3)
-  cruiser.hit
-  cruiser.hit
-  cruiser.hit
-  expect(cruiser.sunk?). to eql(true)
+    cruiser = Ship.new("Cruiser", 3)
+    cruiser.hit
+    cruiser.hit
+    cruiser.hit
+    expect(cruiser.sunk?).to eql(true)
   end 
-  
 end
 
 
